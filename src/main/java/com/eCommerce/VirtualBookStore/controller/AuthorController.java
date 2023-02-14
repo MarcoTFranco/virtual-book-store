@@ -5,6 +5,7 @@ import com.eCommerce.VirtualBookStore.model.entitiesRequest.AuthorRequest;
 import com.eCommerce.VirtualBookStore.service.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
     @Autowired
     private AuthorService service;
+
     @PostMapping(value = "/authors")
-    public String createAuthor(@RequestBody @Valid AuthorRequest request) {
+    public ResponseEntity<Author> createAuthor(@RequestBody @Valid AuthorRequest request) {
         Author author = request.toModel();
         service.createAuthor(author);
-        return author.toString();
+        return ResponseEntity.ok().body(author);
     }
 
 }
