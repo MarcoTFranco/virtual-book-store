@@ -2,14 +2,17 @@ package com.eCommerce.VirtualBookStore.controller;
 
 import com.eCommerce.VirtualBookStore.model.entities.Book;
 import com.eCommerce.VirtualBookStore.model.entitiesRequest.BookRequest;
+import com.eCommerce.VirtualBookStore.model.entitiesResponse.BookResponse;
 import com.eCommerce.VirtualBookStore.service.BookService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,15 +26,17 @@ public class BookController {
     private EntityManager manager;
 
     @PostMapping(value = "/books")
-    public ResponseEntity<Book> createBook (@RequestBody @Valid BookRequest request) {
+    public ResponseEntity<?> createBook(@RequestBody @Valid BookRequest request) {
         Book book = request.toModel(manager);
         service.createBook(book);
-        return ResponseEntity.ok().body(book);
+        BookResponse bookResponse = new BookResponse(book);
+        return ResponseEntity.ok(bookResponse);
     }
 
     @GetMapping(value = "/books/all")
-    public ResponseEntity<List<Book>> findAll () {
+    public ResponseEntity<List<?>> findAll() {
         List<Book> books = service.findAll();
-        return ResponseEntity.ok().body(books);
+        List<BookResponse> booksResponse = books.stream().map(x -> new BookResponse(x)).toList();
+        return ResponseEntity.ok(booksResponse);
     }
 }

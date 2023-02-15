@@ -38,6 +38,10 @@ public class Author {
         this.description = description;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -52,5 +56,9 @@ public class Author {
 
     public Instant getMoment() {
         return moment;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }
