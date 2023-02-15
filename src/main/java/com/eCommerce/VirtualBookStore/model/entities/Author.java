@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_name")
@@ -23,6 +25,12 @@ public class Author {
     private String description;
     @NotNull
     private Instant moment = Instant.now();
+    @OneToMany(mappedBy = "author")
+    private List<Book> books = new ArrayList<>();
+
+    @Deprecated
+    public Author() {
+    }
 
     public Author(String name, String email, String description) {
         this.name = name;
