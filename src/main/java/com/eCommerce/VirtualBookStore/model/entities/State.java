@@ -12,6 +12,10 @@ public class State {
     @ManyToOne
     private Country country;
 
+    @Deprecated
+    public State() {
+    }
+
     public State(String name, Country country) {
         this.name = name;
         this.country = country;
@@ -23,6 +27,10 @@ public class State {
 
     public Country getCountry() {
         return country;
+    }
+
+    public boolean belongCountry(Country country) {
+        return this.country.equals(country) && this.country.hashCode() == country.hashCode();
     }
 }
 

@@ -4,6 +4,7 @@ import com.eCommerce.VirtualBookStore.model.entities.Author;
 import com.eCommerce.VirtualBookStore.model.entities.Book;
 import com.eCommerce.VirtualBookStore.model.entities.Category;
 import com.eCommerce.VirtualBookStore.service.annotations.DuplicateValue;
+import com.eCommerce.VirtualBookStore.service.annotations.ExistId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.*;
@@ -30,13 +31,15 @@ public class BookRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date publicationDate;
     @NotNull
-    private String categoryId;
+    @ExistId(className = Category.class)
+    private Long categoryId;
     @NotNull
-    private String authorId;
+    @ExistId(className = Author.class)
+    private Long authorId;
 
     public BookRequest(String title, String bookSummary, String freeSizeSummary,
                        Double price, Integer numberOfPages, String isbn,
-                       Date publicationDate, String categoryId, String authorId) {
+                       Date publicationDate, Long categoryId, Long authorId) {
         this.title = title;
         this.bookSummary = bookSummary;
         this.freeSizeSummary = freeSizeSummary;

@@ -3,6 +3,7 @@ package com.eCommerce.VirtualBookStore.model.entitiesRequest;
 import com.eCommerce.VirtualBookStore.model.entities.Country;
 import com.eCommerce.VirtualBookStore.model.entities.State;
 import com.eCommerce.VirtualBookStore.service.annotations.DuplicateValue;
+import com.eCommerce.VirtualBookStore.service.annotations.ExistId;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ public class StateRequest {
     @DuplicateValue(fieldName = "name", className = State.class)
     private String name;
     @NotNull
+    @ExistId(className = Country.class)
     private Long countryId;
 
     public StateRequest(String name, Long countryId) {
