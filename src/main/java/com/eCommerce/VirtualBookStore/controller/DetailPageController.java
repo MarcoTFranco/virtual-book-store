@@ -16,7 +16,7 @@ public class DetailPageController {
     private BookService service;
 
     @GetMapping(value = "products/{id}")
-    public ResponseEntity<BookResponse> bookDetails (@PathVariable Long id){
+    public ResponseEntity<?> bookDetails (@PathVariable Long id){
 
         Book bookSearch = service.findById(id);
         BookResponse bookResponse = new BookResponse(bookSearch);

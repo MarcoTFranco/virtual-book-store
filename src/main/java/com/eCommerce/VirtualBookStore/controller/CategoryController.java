@@ -2,6 +2,7 @@ package com.eCommerce.VirtualBookStore.controller;
 
 import com.eCommerce.VirtualBookStore.model.entities.Category;
 import com.eCommerce.VirtualBookStore.model.entitiesRequest.CategoryRequest;
+import com.eCommerce.VirtualBookStore.model.entitiesResponse.CategoryResponse;
 import com.eCommerce.VirtualBookStore.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,11 @@ public class CategoryController {
     private CategoryService service;
 
     @PostMapping(value = "/categories")
-    public ResponseEntity<Category> createCategory (@RequestBody @Valid CategoryRequest request) {
+    public ResponseEntity<?> createCategory (@RequestBody @Valid CategoryRequest request) {
         Category category = request.toModel();
         service.createCategory(category);
-        return ResponseEntity.ok().body(category);
+        CategoryResponse categoryResponse = new CategoryResponse(category);
+        return ResponseEntity.ok(categoryResponse);
     }
 
 }
