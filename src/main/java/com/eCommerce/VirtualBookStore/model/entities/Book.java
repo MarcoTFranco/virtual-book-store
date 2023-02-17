@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_book")
@@ -78,5 +79,18 @@ public class Book {
 
     public Author getAuthor() {
         return author;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(isbn, book.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn);
     }
 }

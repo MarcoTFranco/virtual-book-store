@@ -13,7 +13,7 @@ public class CountryRequest {
     public CountryRequest() {
     }
 
-    public CountryRequest (@NotBlank String name){
+    public CountryRequest(@NotBlank String name) {
         this.name = name;
     }
 

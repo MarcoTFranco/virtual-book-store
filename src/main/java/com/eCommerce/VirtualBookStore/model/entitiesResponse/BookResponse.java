@@ -10,6 +10,7 @@ public class BookResponse {
     private AuthorResponse author;
     private String bookSummary;
     private String freeSizeSummary;
+    private Double price;
     private Integer numberOfPages;
     private String isbn;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -20,6 +21,7 @@ public class BookResponse {
         this.author = new AuthorResponse(book.getAuthor());
         this.bookSummary = book.getBookSummary();
         this.freeSizeSummary = book.getFreeSizeSummary();
+        this.price = book.getPrice();
         this.numberOfPages = book.getNumberOfPages();
         this.isbn = book.getIsbn();
         this.publicationDate = book.getPublicationDate();
@@ -39,6 +41,10 @@ public class BookResponse {
 
     public String getFreeSizeSummary() {
         return freeSizeSummary;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 
     public Integer getNumberOfPages() {
