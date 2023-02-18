@@ -113,6 +113,12 @@ public class Payment {
         return state;
     }
 
+    public void setState(@NotNull @Valid State state) {
+        Assert.notNull(state, "Não pode associar um estado enquanto o país for nulo");
+        Assert.isTrue(state.belongCountry(country), "Este estado não é do país de compra");
+        this.state = state;
+    }
+
     public Order getOrder() {
         return order;
     }
@@ -121,15 +127,11 @@ public class Payment {
         return couponApplied;
     }
 
-    public void setState(@NotNull @Valid State state) {
-        Assert.notNull(state, "Não pode associar um estado enquanto o país for nulo");
-        Assert.isTrue(state.belongCountry(country), "Este estado não é do país de compra");
-        this.state = state;
-    }
-
     public void applyCoupon(Coupon coupon) {
         Assert.isTrue(coupon.isValid(), "O coupon que está sendo aplicado não esta mais valido");
         Assert.isNull(couponApplied, "Não pode trocar um cupom de uma compra");
         this.couponApplied = new CouponApplied(coupon);
+        order.applyDiscount(coupon);
+
     }
 }

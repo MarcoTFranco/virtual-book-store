@@ -47,7 +47,7 @@ public class PaymentRequest {
 
     public PaymentRequest(@NotBlank @Email String email, @NotBlank String name, @NotBlank String surname,
                           @NotBlank @Document String document, @NotBlank String address, @NotBlank String complement,
-                          @NotBlank String city, @NotNull Long countryId, @NotNull Long stateId,
+                          @NotBlank String city, @NotNull Long countryId,
                           @NotBlank String telephone, @NotBlank String cep, @NotNull @Valid OrderRequest orderRequest) {
         this.email = email;
         this.name = name;
@@ -57,7 +57,6 @@ public class PaymentRequest {
         this.complement = complement;
         this.city = city;
         this.countryId = countryId;
-        this.stateId = stateId;
         this.telephone = telephone;
         this.cep = cep;
         this.orderRequest = orderRequest;
@@ -69,6 +68,10 @@ public class PaymentRequest {
 
     public Long getStateId() {
         return stateId;
+    }
+
+    public void setStateId(Long stateId) {
+        this.stateId = stateId;
     }
 
     public String getCouponCode() {

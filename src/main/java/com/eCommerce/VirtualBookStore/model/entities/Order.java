@@ -20,6 +20,9 @@ public class Order {
     @Positive
     @NotNull
     private BigDecimal total;
+
+    private BigDecimal totalWithDiscount;
+
     @OneToOne
     private Payment payment;
     @Size(min = 1)
@@ -44,6 +47,10 @@ public class Order {
         return total;
     }
 
+    public BigDecimal getTotalWithDiscount() {
+        return totalWithDiscount;
+    }
+
     public Payment getPayment() {
         return payment;
     }
@@ -52,9 +59,23 @@ public class Order {
         return items;
     }
 
+    public void setTotalWithDiscount(BigDecimal totalWithDiscount) {
+        this.totalWithDiscount = totalWithDiscount;
+    }
+
     public boolean totalEquals(@Positive @NotNull BigDecimal total) {
         BigDecimal totalOrder = items.stream().map(OrderItem::total)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalOrder.doubleValue() == total.doubleValue();
+    }
+
+    public void applyDiscount(Coupon coupon) {
+        if (totalEquals(total)) {
+            if (coupon.isValid()) {
+                Double percentageDiscount = payment.getCouponApplied().getPercentualdiscount();
+                this.totalWithDiscount = total.subtract((total.multiply(BigDecimal.valueOf(percentageDiscount)))
+                        .divide(BigDecimal.valueOf(100.0)));
+            }
+        }
     }
 }
