@@ -16,7 +16,8 @@ public class AuthorRequest {
     @Size(max = 400)
     private String description;
 
-    public AuthorRequest(String name, String email, String description) {
+    public AuthorRequest(@NotBlank String name, @NotBlank @Email String email,
+                         @NotBlank @Size(max = 400) String description) {
         this.name = name;
         this.email = email;
         this.description = description;

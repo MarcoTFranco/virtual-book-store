@@ -1,6 +1,7 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
     @OneToMany(mappedBy = "category")
     private List<Book> books = new ArrayList<>();
@@ -19,7 +21,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(@NotBlank String name) {
         this.name = name;
     }
 

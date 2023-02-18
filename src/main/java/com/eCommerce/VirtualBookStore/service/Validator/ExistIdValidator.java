@@ -8,7 +8,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.List;
 
-public class ExistIdValidator implements ConstraintValidator<ExistId, Long> {
+public class ExistIdValidator implements ConstraintValidator<ExistId, Object> {
 
     @PersistenceContext
     private EntityManager manager;
@@ -21,7 +21,7 @@ public class ExistIdValidator implements ConstraintValidator<ExistId, Long> {
     }
 
     @Override
-    public boolean isValid(Long value, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(Object value, ConstraintValidatorContext constraintValidatorContext) {
         List<?> list = manager.createQuery("select id from " + className.getName() + " where id =:value")
                 .setParameter("value", value).getResultList();
         if (value == null || list.size()>0){

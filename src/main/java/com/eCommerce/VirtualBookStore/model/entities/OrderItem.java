@@ -12,8 +12,10 @@ import java.util.Objects;
 @Embeddable
 public class OrderItem {
     @JsonIgnore
+    @NotNull
     @ManyToOne
     private Book book;
+    @Positive
     private Integer amount;
     @Positive
     private BigDecimal momentPrice;

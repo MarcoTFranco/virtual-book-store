@@ -1,9 +1,7 @@
 package com.eCommerce.VirtualBookStore.model.entitiesRequest;
 
-import com.eCommerce.VirtualBookStore.model.entities.Country;
-import com.eCommerce.VirtualBookStore.model.entities.Order;
-import com.eCommerce.VirtualBookStore.model.entities.Payment;
-import com.eCommerce.VirtualBookStore.model.entities.State;
+import com.eCommerce.VirtualBookStore.model.entities.*;
+import com.eCommerce.VirtualBookStore.repositories.CouponRepository;
 import com.eCommerce.VirtualBookStore.service.annotations.Document;
 import com.eCommerce.VirtualBookStore.service.annotations.ExistId;
 import jakarta.persistence.EntityManager;
@@ -11,7 +9,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.util.StringUtils;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public class PaymentRequest {
@@ -43,11 +43,12 @@ public class PaymentRequest {
     @Valid
     @NotNull
     private OrderRequest orderRequest;
+    private String couponCode;
 
-    public PaymentRequest(String email, String name, String surname,
-                          String document, String address, String complement,
-                          String city, Long countryId, Long stateId,
-                          String telephone, String cep, OrderRequest orderRequest) {
+    public PaymentRequest(@NotBlank @Email String email, @NotBlank String name, @NotBlank String surname,
+                          @NotBlank @Document String document, @NotBlank String address, @NotBlank String complement,
+                          @NotBlank String city, @NotNull Long countryId, @NotNull Long stateId,
+                          @NotBlank String telephone, @NotBlank String cep, @NotNull @Valid OrderRequest orderRequest) {
         this.email = email;
         this.name = name;
         this.surname = surname;
@@ -70,17 +71,37 @@ public class PaymentRequest {
         return stateId;
     }
 
-    public Payment toModel(EntityManager manager) {
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCoupon(String couponCode) {
+        this.couponCode = couponCode;
+    }
+
+    public Payment toModel(EntityManager manager, CouponRepository couponRepository) {
         @NotNull Country country = manager.find(Country.class, countryId);
+
         Function<Payment, Order> functionCreateOrder = orderRequest.toModel(manager);
-        Payment payment = new Payment(email, name, surname, document, address, complement, city, country, telephone, cep, functionCreateOrder);
+
+        Payment payment = new Payment(email, name, surname, document, address,
+                complement, city, country, telephone, cep, functionCreateOrder);
         if (stateId != null) {
             payment.setState(manager.find(State.class, stateId));
+        }
+
+        if(StringUtils.hasText(couponCode)) {
+            Coupon coupon = couponRepository.findByCode(couponCode);
+            payment.applyCoupon(coupon);
         }
         return payment;
     }
 
     public boolean hasBeen() {
         return stateId != null;
+    }
+
+    public Optional<String> hasCouponDiscount() {
+        return Optional.ofNullable(couponCode);
     }
 }

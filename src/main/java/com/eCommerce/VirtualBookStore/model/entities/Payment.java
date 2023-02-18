@@ -1,5 +1,6 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
+import com.eCommerce.VirtualBookStore.service.annotations.Document;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -15,14 +16,25 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Email
+    @NotBlank
     private String email;
+    @NotBlank
     private String name;
+    @NotBlank
     private String surname;
+    @NotBlank
+    @Document
     private String document;
+    @NotBlank
     private String address;
+    @NotBlank
     private String complement;
+    @NotBlank
     private String city;
+    @NotBlank
     private String telephone;
+    @NotBlank
     private String cep;
     @ManyToOne
     private Country country;
@@ -31,6 +43,8 @@ public class Payment {
 
     @OneToOne(mappedBy = "payment", cascade = CascadeType.PERSIST)
     private Order order;
+    @Embedded
+    private CouponApplied couponApplied;
 
     @Deprecated
     public Payment() {
@@ -99,13 +113,23 @@ public class Payment {
         return state;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public CouponApplied getCouponApplied() {
+        return couponApplied;
+    }
+
     public void setState(@NotNull @Valid State state) {
         Assert.notNull(state, "Não pode associar um estado enquanto o país for nulo");
         Assert.isTrue(state.belongCountry(country), "Este estado não é do país de compra");
         this.state = state;
     }
 
-    public Order getOrder() {
-        return order;
+    public void applyCoupon(Coupon coupon) {
+        Assert.isTrue(coupon.isValid(), "O coupon que está sendo aplicado não esta mais valido");
+        Assert.isNull(couponApplied, "Não pode trocar um cupom de uma compra");
+        this.couponApplied = new CouponApplied(coupon);
     }
 }

@@ -17,7 +17,7 @@ public class StateRequest {
     @ExistId(className = Country.class)
     private Long countryId;
 
-    public StateRequest(String name, Long countryId) {
+    public StateRequest(@NotBlank String name, @NotNull Long countryId) {
         this.name = name;
         this.countryId = countryId;
     }

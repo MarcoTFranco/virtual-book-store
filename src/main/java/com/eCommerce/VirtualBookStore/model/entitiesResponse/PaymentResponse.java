@@ -1,6 +1,7 @@
 package com.eCommerce.VirtualBookStore.model.entitiesResponse;
 
 import com.eCommerce.VirtualBookStore.model.entities.Country;
+import com.eCommerce.VirtualBookStore.model.entities.CouponApplied;
 import com.eCommerce.VirtualBookStore.model.entities.Payment;
 import com.eCommerce.VirtualBookStore.model.entities.State;
 
@@ -17,7 +18,7 @@ public class PaymentResponse {
     private String cep;
     private Country country;
     private State state;
-
+    private CouponApplied couponApplied;
     private OrderResponse order;
 
     public PaymentResponse(Payment payment) {
@@ -32,6 +33,7 @@ public class PaymentResponse {
         this.state = payment.getState();
         this.telephone = payment.getTelephone();
         this.cep = payment.getCep();
+        this.couponApplied = payment.getCouponApplied();
         this.order = new OrderResponse(payment.getOrder());
     }
 
@@ -77,6 +79,10 @@ public class PaymentResponse {
 
     public State getState() {
         return state;
+    }
+
+    public CouponApplied getCouponApplied() {
+        return couponApplied;
     }
 
     public OrderResponse getOrder() {

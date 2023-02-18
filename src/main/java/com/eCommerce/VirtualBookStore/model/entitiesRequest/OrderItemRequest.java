@@ -14,11 +14,10 @@ public class OrderItemRequest {
     @Positive
     private Integer amount;
 
-    public OrderItemRequest(Long bookId, Integer amount) {
+    public OrderItemRequest( @NotNull Long bookId, @Positive Integer amount) {
         this.bookId = bookId;
         this.amount = amount;
     }
-
 
     public OrderItem toModel(EntityManager manager) {
         @NotNull Book book = manager.find(Book.class, bookId);

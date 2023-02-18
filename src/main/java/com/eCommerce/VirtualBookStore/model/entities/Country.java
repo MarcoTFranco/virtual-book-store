@@ -1,8 +1,11 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_country")
@@ -11,6 +14,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
     @OneToMany(mappedBy = "country")
     private Set<State> states = new HashSet<>();
@@ -19,7 +23,7 @@ public class Country {
     public Country() {
     }
 
-    public Country(String name) {
+    public Country(@NotBlank String name) {
         this.name = name;
     }
 

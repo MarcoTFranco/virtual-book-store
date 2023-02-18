@@ -1,6 +1,8 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_state")
@@ -8,7 +10,9 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
+    @NotNull
     @ManyToOne
     private Country country;
 
@@ -16,7 +20,7 @@ public class State {
     public State() {
     }
 
-    public State(String name, Country country) {
+    public State( @NotBlank String name, @NotNull Country country) {
         this.name = name;
         this.country = country;
     }

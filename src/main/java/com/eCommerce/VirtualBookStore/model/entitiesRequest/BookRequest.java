@@ -37,9 +37,10 @@ public class BookRequest {
     @ExistId(className = Author.class)
     private Long authorId;
 
-    public BookRequest(String title, String bookSummary, String freeSizeSummary,
-                       Double price, Integer numberOfPages, String isbn,
-                       Date publicationDate, Long categoryId, Long authorId) {
+    public BookRequest(@NotBlank String title, @NotBlank String bookSummary, String freeSizeSummary,
+                       @DecimalMin("20.0") Double price, @Min(100) Integer numberOfPages,
+                       @NotBlank String isbn, @Future Date publicationDate,
+                       @NotNull Long categoryId, @NotNull Long authorId) {
         this.title = title;
         this.bookSummary = bookSummary;
         this.freeSizeSummary = freeSizeSummary;

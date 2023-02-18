@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @CPF
 @CNPJ
 @ConstraintComposition(CompositionType.OR)
-@Target({ElementType.FIELD})
+@Target({ElementType.FIELD, ElementType.CONSTRUCTOR, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @ReportAsSingleViolation
 @Constraint(validatedBy = { })

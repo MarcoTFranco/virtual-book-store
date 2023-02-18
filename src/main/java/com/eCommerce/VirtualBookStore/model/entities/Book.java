@@ -1,6 +1,5 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -14,15 +13,24 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String title;
+    @NotBlank
+    @Size(max = 500)
     private String bookSummary;
     private String freeSizeSummary;
+    @DecimalMin("20.0")
     private Double price;
+    @Min(100)
     private Integer numberOfPages;
+    @NotBlank
     private String isbn;
+    @Future
     private Date publicationDate;
+    @NotNull
     @ManyToOne
     private Category category;
+    @NotNull
     @ManyToOne
     private Author author;
 

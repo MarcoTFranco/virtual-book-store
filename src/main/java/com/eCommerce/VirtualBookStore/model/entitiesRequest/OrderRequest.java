@@ -1,5 +1,6 @@
 package com.eCommerce.VirtualBookStore.model.entitiesRequest;
 
+import com.eCommerce.VirtualBookStore.model.entities.Coupon;
 import com.eCommerce.VirtualBookStore.model.entities.Order;
 import com.eCommerce.VirtualBookStore.model.entities.OrderItem;
 import com.eCommerce.VirtualBookStore.model.entities.Payment;
@@ -17,7 +18,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class OrderRequest {
-
     @Positive
     @NotNull
     private BigDecimal total;
@@ -25,7 +25,9 @@ public class OrderRequest {
     @Valid
     private Set<OrderItemRequest> items = new HashSet<>();
 
-    public OrderRequest(BigDecimal total, Set<OrderItemRequest> items) {
+
+    public OrderRequest(@Positive @NotNull BigDecimal total,
+                        @Size(min = 1) @Valid Set<OrderItemRequest> items) {
         this.total = total;
         this.items = items;
     }
@@ -33,11 +35,9 @@ public class OrderRequest {
     public Function<Payment, Order> toModel(EntityManager manager) {
         Set<OrderItem> caculetedItems = items.stream().map(item -> item.toModel(manager)).collect(Collectors.toSet());
         return (payment) -> {
-            Order order = new Order(payment, caculetedItems);
+            Order order = new Order(total, payment, caculetedItems);
             Assert.isTrue(order.totalEquals(total), "Total enviado não corresponde ao total real");
             return order;
         };
     }
-
-
 }
