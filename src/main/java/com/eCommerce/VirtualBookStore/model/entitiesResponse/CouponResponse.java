@@ -3,14 +3,15 @@ package com.eCommerce.VirtualBookStore.model.entitiesResponse;
 import com.eCommerce.VirtualBookStore.model.entities.Coupon;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class CouponResponse {
 
     private String code;
-    private Double percentage;
+    private BigDecimal percentage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date validity;
+    private LocalDate validity;
 
     public CouponResponse(Coupon coupon) {
         this.code = coupon.getCode();
@@ -22,11 +23,11 @@ public class CouponResponse {
         return code;
     }
 
-    public Double getPercentage() {
+    public BigDecimal getPercentage() {
         return percentage;
     }
 
-    public Date getValidity() {
+    public LocalDate getValidity() {
         return validity;
     }
 }

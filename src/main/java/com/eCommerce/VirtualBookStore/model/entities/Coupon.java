@@ -2,9 +2,10 @@ package com.eCommerce.VirtualBookStore.model.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.springframework.util.Assert;
 
-import java.time.Instant;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -18,15 +19,16 @@ public class Coupon {
     @NotNull
     @Positive
     @DecimalMax("100.0")
-    private Double percentage;
+    private BigDecimal percentage;
     @Future
-    private Date validity;
+    private LocalDate validity;
 
     @Deprecated
     public Coupon() {
     }
 
-    public Coupon(@NotBlank String code, @NotNull Double percentage, @Future Date validity) {
+    public Coupon(@NotBlank String code, @NotNull BigDecimal percentage, @Future LocalDate validity) {
+        Assert.isTrue(!validity.isBefore(LocalDate.now()), "A validade precisa ser no futuro");
         this.code = code;
         this.percentage = percentage;
         this.validity = validity;
@@ -36,19 +38,19 @@ public class Coupon {
         return code;
     }
 
-    public Double getPercentage() {
+    public BigDecimal getPercentage() {
         return percentage;
     }
 
-    public Date getValidity() {
+    public LocalDate getValidity() {
         return validity;
     }
 
     public boolean isValid() {
-        return Instant.now().compareTo(this.validity.toInstant()) <= 0;
+        return LocalDate.now().compareTo(this.validity) <= 0;
     }
 
-    public boolean existCoupon(Coupon coupon){
+    public boolean existCoupon(Coupon coupon) {
         return this.code.equals(coupon.getCode());
     }
 

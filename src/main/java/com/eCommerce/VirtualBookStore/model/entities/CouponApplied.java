@@ -7,7 +7,8 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Embeddable
 public class CouponApplied {
@@ -17,10 +18,10 @@ public class CouponApplied {
     private Coupon coupon;
     @Positive
     @NotNull
-    private Double percentualdiscount;
+    private BigDecimal percentualdiscount;
     @NotNull
     @Future
-    private Date validity;
+    private LocalDate validity;
 
     @Deprecated
     public CouponApplied() {
@@ -36,11 +37,11 @@ public class CouponApplied {
         return coupon;
     }
 
-    public Double getPercentualdiscount() {
+    public BigDecimal getPercentualdiscount() {
         return percentualdiscount;
     }
 
-    public Date getValidity() {
+    public LocalDate getValidity() {
         return validity;
     }
 }

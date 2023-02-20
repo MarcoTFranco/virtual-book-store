@@ -1,11 +1,9 @@
 package com.eCommerce.VirtualBookStore.controller;
 
-import com.eCommerce.VirtualBookStore.model.entities.Country;
 import com.eCommerce.VirtualBookStore.model.entities.State;
 import com.eCommerce.VirtualBookStore.model.entitiesRequest.StateRequest;
 import com.eCommerce.VirtualBookStore.model.entitiesResponse.StateResponse;
 import com.eCommerce.VirtualBookStore.service.StateService;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.validation.Valid;

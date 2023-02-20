@@ -3,18 +3,19 @@ package com.eCommerce.VirtualBookStore.model.entitiesResponse;
 import com.eCommerce.VirtualBookStore.model.entities.Book;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class BookResponse {
     private String title;
     private AuthorResponse author;
     private String bookSummary;
     private String freeSizeSummary;
-    private Double price;
+    private BigDecimal price;
     private Integer numberOfPages;
     private String isbn;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date publicationDate;
+    private LocalDate publicationDate;
 
     public BookResponse(Book book) {
         this.title = book.getTitle();
@@ -43,7 +44,7 @@ public class BookResponse {
         return freeSizeSummary;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -55,7 +56,7 @@ public class BookResponse {
         return isbn;
     }
 
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 }

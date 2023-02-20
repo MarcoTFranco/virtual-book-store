@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -20,13 +21,13 @@ public class Book {
     private String bookSummary;
     private String freeSizeSummary;
     @DecimalMin("20.0")
-    private Double price;
+    private BigDecimal price;
     @Min(100)
     private Integer numberOfPages;
     @NotBlank
     private String isbn;
     @Future
-    private Date publicationDate;
+    private LocalDate publicationDate;
     @NotNull
     @ManyToOne
     private Category category;
@@ -39,8 +40,8 @@ public class Book {
     }
 
     public Book(@NotBlank String title, @NotBlank String bookSummary, String freeSizeSummary,
-                @DecimalMin("20.0") Double price, @Min(100) Integer numberOfPages,
-                @NotBlank String isbn, @Future Date publicationDate,
+                @DecimalMin("20.0") BigDecimal price, @Min(100) Integer numberOfPages,
+                @NotBlank String isbn, @Future LocalDate publicationDate,
                 @NotNull @Valid Category category, @NotNull @Valid Author author) {
         this.title = title;
         this.bookSummary = bookSummary;
@@ -65,7 +66,7 @@ public class Book {
         return freeSizeSummary;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -77,7 +78,7 @@ public class Book {
         return isbn;
     }
 
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 

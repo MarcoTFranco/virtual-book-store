@@ -35,7 +35,7 @@ public class OrderRequest {
         Set<OrderItem> caculetedItems = items.stream().map(item -> item.toModel(manager)).collect(Collectors.toSet());
         return (payment) -> {
 
-            Order order = new Order(total, payment, caculetedItems);
+            Order order = new Order(payment, caculetedItems);
             Assert.isTrue(order.totalEquals(total), "Total enviado não corresponde ao total real");
 
             return order;

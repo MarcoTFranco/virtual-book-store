@@ -27,7 +27,7 @@ public class OrderItem {
     public OrderItem(@NotNull Book book, @Positive Integer amount) {
         this.book = book;
         this.amount = amount;
-        this.momentPrice = BigDecimal.valueOf(book.getPrice());
+        this.momentPrice = book.getPrice();
     }
 
     public Book getBook() {

@@ -10,7 +10,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.validation.constraints.*;
 import org.springframework.util.Assert;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class BookRequest {
     @NotBlank
@@ -21,7 +22,7 @@ public class BookRequest {
     private String bookSummary;
     private String freeSizeSummary;
     @DecimalMin("20.0")
-    private Double price;
+    private BigDecimal price;
     @Min(100)
     private Integer numberOfPages;
     @NotBlank
@@ -29,7 +30,7 @@ public class BookRequest {
     private String isbn;
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date publicationDate;
+    private LocalDate publicationDate;
     @NotNull
     @ExistId(className = Category.class)
     private Long categoryId;
@@ -38,8 +39,8 @@ public class BookRequest {
     private Long authorId;
 
     public BookRequest(@NotBlank String title, @NotBlank String bookSummary, String freeSizeSummary,
-                       @DecimalMin("20.0") Double price, @Min(100) Integer numberOfPages,
-                       @NotBlank String isbn, @Future Date publicationDate,
+                       @DecimalMin("20.0") BigDecimal price, @Min(100) Integer numberOfPages,
+                       @NotBlank String isbn, @Future LocalDate publicationDate,
                        @NotNull Long categoryId, @NotNull Long authorId) {
         this.title = title;
         this.bookSummary = bookSummary;

@@ -5,7 +5,8 @@ import com.eCommerce.VirtualBookStore.service.annotations.DuplicateValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class CouponRequest {
     @NotBlank
@@ -14,12 +15,12 @@ public class CouponRequest {
     @NotNull
     @Positive
     @DecimalMax("100.0")
-    private Double percentage;
+    private BigDecimal percentage;
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date validity;
+    private LocalDate validity;
 
-    public CouponRequest(@NotBlank String code, @NotNull Double percentage, @Future Date validity) {
+    public CouponRequest(@NotBlank String code, @NotNull BigDecimal percentage, @Future LocalDate validity) {
         this.code = code;
         this.percentage = percentage;
         this.validity = validity;

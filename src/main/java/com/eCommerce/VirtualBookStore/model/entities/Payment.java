@@ -130,8 +130,8 @@ public class Payment {
     public void applyCoupon(Coupon coupon) {
         Assert.isTrue(coupon.isValid(), "O coupon que está sendo aplicado não esta mais valido");
         Assert.isNull(couponApplied, "Não pode trocar um cupom de uma compra");
+        order.applyDiscount(coupon, order.getTotal());
         this.couponApplied = new CouponApplied(coupon);
-        order.applyDiscount(coupon);
 
     }
 }

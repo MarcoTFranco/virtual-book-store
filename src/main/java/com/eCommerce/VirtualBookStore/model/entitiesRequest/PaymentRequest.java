@@ -70,15 +70,19 @@ public class PaymentRequest {
         return stateId;
     }
 
-    public void setStateId(Long stateId) {
-        this.stateId = stateId;
-    }
-
     public String getCouponCode() {
         return couponCode;
     }
 
-    public void setCoupon(String couponCode) {
+    public String getDocument() {
+        return document;
+    }
+
+    public void setStateId(Long stateId) {
+        this.stateId = stateId;
+    }
+
+    public void setCouponCode(String couponCode) {
         this.couponCode = couponCode;
     }
 
@@ -101,7 +105,7 @@ public class PaymentRequest {
     }
 
     public boolean hasBeen() {
-        return stateId != null;
+        return Optional.ofNullable(stateId).isPresent();
     }
 
     public Optional<String> hasCouponDiscount() {

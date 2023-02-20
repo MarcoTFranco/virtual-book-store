@@ -34,11 +34,9 @@ public class Order {
     public Order() {
     }
 
-    public Order(@Positive @NotNull BigDecimal total,
-                 @NotNull @Valid Payment payment,
+    public Order(@NotNull @Valid Payment payment,
                  @Size(min = 1) Set<OrderItem> items) {
         Assert.isTrue(!items.isEmpty(), "Não pode esta vazio!");
-        this.total = total;
         this.payment = payment;
         this.items.addAll(items);
     }
@@ -59,6 +57,10 @@ public class Order {
         return items;
     }
 
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
     public void setTotalWithDiscount(BigDecimal totalWithDiscount) {
         this.totalWithDiscount = totalWithDiscount;
     }
@@ -66,14 +68,15 @@ public class Order {
     public boolean totalEquals(@Positive @NotNull BigDecimal total) {
         BigDecimal totalOrder = items.stream().map(OrderItem::total)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+        setTotal(totalOrder);
         return totalOrder.doubleValue() == total.doubleValue();
     }
 
-    public void applyDiscount(Coupon coupon) {
+    public void applyDiscount(Coupon coupon, BigDecimal total) {
         if (totalEquals(total)) {
             if (coupon.isValid()) {
-                Double percentageDiscount = payment.getCouponApplied().getPercentualdiscount();
-                this.totalWithDiscount = total.subtract((total.multiply(BigDecimal.valueOf(percentageDiscount)))
+                BigDecimal percentageDiscount = coupon.getPercentage();
+                this.totalWithDiscount = total.subtract((total.multiply(percentageDiscount))
                         .divide(BigDecimal.valueOf(100.0)));
             }
         }

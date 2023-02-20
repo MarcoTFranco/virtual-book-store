@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Author {
     @Size(max = 400)
     private String description;
     @NotNull
-    private Instant moment = Instant.now();
+    private LocalDate moment = LocalDate.now();
     @OneToMany(mappedBy = "author")
     private List<Book> books = new ArrayList<>();
 
@@ -55,7 +55,7 @@ public class Author {
         return description;
     }
 
-    public Instant getMoment() {
+    public LocalDate getMoment() {
         return moment;
     }
 
