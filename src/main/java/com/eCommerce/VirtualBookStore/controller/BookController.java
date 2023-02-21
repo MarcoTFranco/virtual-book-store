@@ -36,7 +36,7 @@ public class BookController {
     @GetMapping(value = "/books/all")
     public ResponseEntity<List<?>> findAll() {
         List<Book> books = service.findAll();
-        List<BookResponse> booksResponse = books.stream().map(x -> new BookResponse(x)).toList();
+        List<BookResponse> booksResponse = books.stream().map(BookResponse::new).toList();
         return ResponseEntity.ok(booksResponse);
     }
 }

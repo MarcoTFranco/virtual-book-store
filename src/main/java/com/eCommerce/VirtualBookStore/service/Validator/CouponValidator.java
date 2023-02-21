@@ -16,6 +16,11 @@ public class CouponValidator implements Validator {
     @Autowired
     private CouponRepository repository;
 
+    public CouponValidator(CouponRepository couponRepository) {
+        super();
+        this.repository = couponRepository;
+    }
+
     @Override
     public boolean supports(Class<?> clazz) {
         return PaymentRequest.class.isAssignableFrom(clazz);

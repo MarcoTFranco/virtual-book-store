@@ -20,15 +20,17 @@ public class Coupon {
     @Positive
     @DecimalMax("100.0")
     private BigDecimal percentage;
-    @Future
+    @FutureOrPresent
     private LocalDate validity;
 
     @Deprecated
     public Coupon() {
     }
 
-    public Coupon(@NotBlank String code, @NotNull BigDecimal percentage, @Future LocalDate validity) {
-        Assert.isTrue(!validity.isBefore(LocalDate.now()), "A validade precisa ser no futuro");
+    public Coupon(@NotBlank String code,
+                  @Positive @NotNull BigDecimal percentage,
+                  @FutureOrPresent @NotNull LocalDate validity) {
+        Assert.isTrue(validity.compareTo(LocalDate.now()) >= 0, "A validade precisa ser no futuro");
         this.code = code;
         this.percentage = percentage;
         this.validity = validity;

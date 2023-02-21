@@ -8,19 +8,19 @@ import java.time.LocalDate;
 
 public class CouponResponse {
 
-    private String code;
+    private String couponCode;
     private BigDecimal percentage;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate validity;
 
     public CouponResponse(Coupon coupon) {
-        this.code = coupon.getCode();
+        this.couponCode = coupon.getCode();
         this.percentage = coupon.getPercentage();
         this.validity = coupon.getValidity();
     }
 
     public String getCode() {
-        return code;
+        return couponCode;
     }
 
     public BigDecimal getPercentage() {

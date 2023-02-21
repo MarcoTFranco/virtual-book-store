@@ -20,7 +20,7 @@ class PaymentRequestTest {
     private OrderRequest order = new OrderRequest(new BigDecimal("250"), itens);
     private PaymentRequest request = new PaymentRequest("email@gmail.com", "Marco Tulio",
             "Franco", "111.111.111-11", "endereco", "complemento",
-            "Belo Horizonte", 1L, "000000000", "1455657", order);
+            "city", 1L, "000000000", "1455657", order);
     private Country country = new Country("country");
     private Author author = new Author("name", "name@gmail.com", "description");
     private Category category = new Category("category");
