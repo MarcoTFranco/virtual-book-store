@@ -1,0 +1,42 @@
+package com.eCommerce.VirtualBookStore.model.request;
+
+import com.eCommerce.VirtualBookStore.adapters.input.request.stateMapper.StateRequest;
+import com.eCommerce.VirtualBookStore.domain.entities.Country;
+import com.eCommerce.VirtualBookStore.domain.usecases.StateService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+class StateRequestTest {
+
+    private final StateRequest request = new StateRequest("", 1L);
+
+    @Test
+    @DisplayName("cria o estado se o pais existir no bando de dados")
+    void test1() {
+
+        StateService service = Mockito.mock(StateService.class);
+
+        Mockito.when(service.find(Country.class, 1L)).thenReturn(new Country(""));
+
+        Assertions.assertNotNull(request.toModel(service));
+    }
+
+    @Test
+    @DisplayName("nao cria o estado se o pais existir no bando de dados")
+    void test2() {
+
+        StateService service = Mockito.mock(StateService.class);
+
+        Mockito.when(service.find(Country.class, 1L)).thenReturn(null);
+
+        Assertions.assertThrows(IllegalStateException.class, () -> {
+            request.toModel(service);
+        });
+    }
+
+
+
+
+}

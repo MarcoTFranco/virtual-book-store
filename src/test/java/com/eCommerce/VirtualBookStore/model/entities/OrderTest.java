@@ -1,12 +1,11 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
-import org.aspectj.weaver.ast.Or;
+import com.eCommerce.VirtualBookStore.domain.entities.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
-import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -1,5 +1,6 @@
 package com.eCommerce.VirtualBookStore.model.entities;
 
+import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

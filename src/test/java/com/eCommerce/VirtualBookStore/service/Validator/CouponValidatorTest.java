@@ -1,10 +1,11 @@
 package com.eCommerce.VirtualBookStore.service.Validator;
 
-import com.eCommerce.VirtualBookStore.model.entities.Coupon;
-import com.eCommerce.VirtualBookStore.model.entitiesRequest.OrderItemRequest;
-import com.eCommerce.VirtualBookStore.model.entitiesRequest.OrderRequest;
-import com.eCommerce.VirtualBookStore.model.entitiesRequest.PaymentRequest;
-import com.eCommerce.VirtualBookStore.repositories.CouponRepository;
+import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
+import com.eCommerce.VirtualBookStore.adapters.input.request.orderItem.OrderItemRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.order.OrderRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.payment.PaymentRequest;
+import com.eCommerce.VirtualBookStore.adapters.output.repositories.CouponRepository;
+import com.eCommerce.VirtualBookStore.domain.usecases.Validator.CouponValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,10 @@ import java.util.Set;
 
 class CouponValidatorTest {
 
-    private CouponRepository couponRepository = Mockito.mock(CouponRepository.class);
-    private Set<OrderItemRequest> itens = Set.of(new OrderItemRequest(1L, 10));
-    private OrderRequest orderRequest = new OrderRequest(BigDecimal.TEN, itens);
-    private PaymentRequest request = new PaymentRequest("email@gmail.com", "Marco Tulio",
+    private final CouponRepository couponRepository = Mockito.mock(CouponRepository.class);
+    private final Set<OrderItemRequest> itens = Set.of(new OrderItemRequest(1L, 10));
+    private final OrderRequest orderRequest = new OrderRequest(BigDecimal.TEN, itens);
+    private final PaymentRequest request = new PaymentRequest("email@gmail.com", "Marco Tulio",
             "Franco", "111.111.111-11", "endereco", "complemento",
             "city", 1L, "000000000", "1455657", orderRequest);
 
@@ -39,7 +40,7 @@ class CouponValidatorTest {
         CouponValidator validator = new CouponValidator(couponRepository);
         validator.validate(request, errors);
 
-        Assertions.assertTrue(errors.getAllErrors().size() == 1);
+        Assertions.assertEquals(1, errors.getAllErrors().size());
         Assertions.assertEquals(errors.hasErrors(), errors.hasFieldErrors("couponCode"));
     }
 
@@ -77,7 +78,7 @@ class CouponValidatorTest {
         CouponValidator validator = new CouponValidator(couponRepository);
         validator.validate(request, errors);
 
-        Assertions.assertTrue(errors.getAllErrors().size() == 1);
+        Assertions.assertEquals(1, errors.getAllErrors().size());
         Assertions.assertEquals("code", errors.getGlobalErrors().get(0).getCode());
     }
 
