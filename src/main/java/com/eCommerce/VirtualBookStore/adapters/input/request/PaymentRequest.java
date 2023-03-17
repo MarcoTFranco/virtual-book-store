@@ -4,6 +4,7 @@ import com.eCommerce.VirtualBookStore.adapters.output.repositories.CouponReposit
 import com.eCommerce.VirtualBookStore.domain.entities.*;
 import com.eCommerce.VirtualBookStore.domain.service.annotations.Document;
 import com.eCommerce.VirtualBookStore.domain.service.annotations.ExistId;
+import com.eCommerce.VirtualBookStore.domain.service.payment.PaymentRequestData;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -14,7 +15,7 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class PaymentRequest {
+public class PaymentRequest implements PaymentRequestData {
     @Email
     @NotBlank
     private String email;
@@ -70,22 +71,23 @@ public class PaymentRequest {
         return stateId;
     }
 
-    public String getCouponCode() {
-        return couponCode;
-    }
-
-    public String getDocument() {
-        return document;
-    }
-
     public void setStateId(Long stateId) {
         this.stateId = stateId;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
     }
 
     public void setCouponCode(String couponCode) {
         this.couponCode = couponCode;
     }
 
+    public String getDocument() {
+        return document;
+    }
+
+    @Override
     public Payment toModel(EntityManager manager, CouponRepository couponRepository) {
         @NotNull Country country = manager.find(Country.class, countryId);
 
@@ -97,7 +99,7 @@ public class PaymentRequest {
             payment.setState(manager.find(State.class, stateId));
         }
 
-        if(StringUtils.hasText(couponCode)) {
+        if (StringUtils.hasText(couponCode)) {
             Coupon coupon = couponRepository.findByCode(couponCode);
             payment.applyCoupon(coupon);
         }
