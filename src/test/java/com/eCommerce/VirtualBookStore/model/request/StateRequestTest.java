@@ -1,8 +1,9 @@
 package com.eCommerce.VirtualBookStore.model.request;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.stateOfTheCountry.StateRequest;
+
+import com.eCommerce.VirtualBookStore.adapters.input.request.StateRequest;
 import com.eCommerce.VirtualBookStore.domain.entities.Country;
-import com.eCommerce.VirtualBookStore.domain.usecases.stateOfTheCountry.StateService;
+import com.eCommerce.VirtualBookStore.domain.service.stateOfTheCountry.StateService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

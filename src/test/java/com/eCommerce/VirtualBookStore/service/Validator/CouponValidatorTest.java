@@ -1,11 +1,11 @@
 package com.eCommerce.VirtualBookStore.service.Validator;
 
-import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
-import com.eCommerce.VirtualBookStore.adapters.input.request.orderItem.OrderItemRequest;
-import com.eCommerce.VirtualBookStore.adapters.input.request.order.OrderRequest;
-import com.eCommerce.VirtualBookStore.adapters.input.request.payment.PaymentRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.OrderItemRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.OrderRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.PaymentRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.CouponRepository;
-import com.eCommerce.VirtualBookStore.domain.usecases.Validator.CouponValidator;
+import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
+import com.eCommerce.VirtualBookStore.domain.service.Validator.CouponValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

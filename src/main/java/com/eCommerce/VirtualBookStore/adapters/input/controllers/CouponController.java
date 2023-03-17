@@ -1,11 +1,10 @@
 package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.coupon.CouponRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.CouponRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.CouponResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
-import com.eCommerce.VirtualBookStore.domain.usecases.coupon.CouponService;
+import com.eCommerce.VirtualBookStore.domain.service.coupon.CouponService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,14 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CouponController {
 
-    @Autowired
-    private CouponService service;
+    private CouponService couponService;
+
+    public CouponController(CouponService couponService) {
+        this.couponService = couponService;
+    }
 
     @PostMapping(value = "/coupons")
-    public ResponseEntity<?> createCoupon (@RequestBody @Valid CouponRequest request) {
-        Coupon coupon = request.toModel();
-        service.createCoupon(coupon);
-        CouponResponse couponResponse = new CouponResponse(coupon);
-        return ResponseEntity.ok(couponResponse);
+    public ResponseEntity<CouponResponse> createCoupon (@RequestBody @Valid CouponRequest request) {
+        Coupon coupon = couponService.performs(request);
+        return ResponseEntity.ok(couponService.toResponse(coupon));
     }
 }

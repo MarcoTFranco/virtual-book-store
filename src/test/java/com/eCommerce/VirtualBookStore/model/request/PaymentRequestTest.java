@@ -1,10 +1,10 @@
 package com.eCommerce.VirtualBookStore.model.request;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.orderItem.OrderItemRequest;
-import com.eCommerce.VirtualBookStore.adapters.input.request.order.OrderRequest;
-import com.eCommerce.VirtualBookStore.adapters.input.request.payment.PaymentRequest;
-import com.eCommerce.VirtualBookStore.domain.entities.*;
+import com.eCommerce.VirtualBookStore.adapters.input.request.OrderItemRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.OrderRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.PaymentRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.CouponRepository;
+import com.eCommerce.VirtualBookStore.domain.entities.*;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

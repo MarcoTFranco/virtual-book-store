@@ -1,6 +1,6 @@
 package com.eCommerce.VirtualBookStore.domain.entities;
 
-import com.eCommerce.VirtualBookStore.domain.usecases.annotations.Document;
+import com.eCommerce.VirtualBookStore.domain.service.annotations.Document;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

@@ -1,9 +1,10 @@
 package com.eCommerce.VirtualBookStore.model.request;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.book.BookRequest;
+
+import com.eCommerce.VirtualBookStore.adapters.input.request.BookRequest;
 import com.eCommerce.VirtualBookStore.domain.entities.Author;
 import com.eCommerce.VirtualBookStore.domain.entities.Category;
-import com.eCommerce.VirtualBookStore.domain.usecases.book.BookService;
+import com.eCommerce.VirtualBookStore.domain.service.book.BookService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
