@@ -3,7 +3,7 @@ package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 import com.eCommerce.VirtualBookStore.adapters.input.request.country.CountryRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.CountryResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Country;
-import com.eCommerce.VirtualBookStore.domain.usecases.CountryService;
+import com.eCommerce.VirtualBookStore.domain.usecases.country.CountryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

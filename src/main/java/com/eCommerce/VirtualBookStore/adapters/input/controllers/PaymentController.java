@@ -4,9 +4,9 @@ import com.eCommerce.VirtualBookStore.adapters.input.request.payment.PaymentRequ
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.CouponRepository;
 import com.eCommerce.VirtualBookStore.adapters.output.response.PaymentResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Payment;
-import com.eCommerce.VirtualBookStore.domain.usecases.PaymentService;
 import com.eCommerce.VirtualBookStore.domain.usecases.Validator.CouponValidator;
 import com.eCommerce.VirtualBookStore.domain.usecases.Validator.StateBelongCountryValidator;
+import com.eCommerce.VirtualBookStore.domain.usecases.payment.PaymentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.validation.Valid;

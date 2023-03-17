@@ -3,7 +3,7 @@ package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 import com.eCommerce.VirtualBookStore.adapters.input.request.coupon.CouponRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.CouponResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Coupon;
-import com.eCommerce.VirtualBookStore.domain.usecases.CouponService;
+import com.eCommerce.VirtualBookStore.domain.usecases.coupon.CouponService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

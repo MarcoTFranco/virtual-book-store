@@ -2,11 +2,12 @@ package com.eCommerce.VirtualBookStore.adapters.input.request.author;
 
 import com.eCommerce.VirtualBookStore.domain.entities.Author;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.DuplicateValue;
+import com.eCommerce.VirtualBookStore.domain.usecases.author.AuthorRequestData;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class AuthorRequest implements AuthorData {
+public class AuthorRequest implements AuthorRequestData {
     @NotBlank
     private String name;
     @NotBlank

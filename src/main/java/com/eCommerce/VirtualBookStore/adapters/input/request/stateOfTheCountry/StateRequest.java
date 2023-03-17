@@ -1,10 +1,10 @@
-package com.eCommerce.VirtualBookStore.adapters.input.request.stateMapper;
+package com.eCommerce.VirtualBookStore.adapters.input.request.stateOfTheCountry;
 
 import com.eCommerce.VirtualBookStore.domain.entities.Country;
 import com.eCommerce.VirtualBookStore.domain.entities.State;
-import com.eCommerce.VirtualBookStore.domain.usecases.StateService;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.DuplicateValue;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.ExistId;
+import com.eCommerce.VirtualBookStore.domain.usecases.stateOfTheCountry.StateService;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.util.Assert;

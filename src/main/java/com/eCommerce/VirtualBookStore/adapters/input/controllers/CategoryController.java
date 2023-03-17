@@ -3,7 +3,7 @@ package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 import com.eCommerce.VirtualBookStore.adapters.input.request.category.CategoryRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.CategoryResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Category;
-import com.eCommerce.VirtualBookStore.domain.usecases.CategoryService;
+import com.eCommerce.VirtualBookStore.domain.usecases.category.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

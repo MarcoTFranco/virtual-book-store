@@ -2,9 +2,10 @@ package com.eCommerce.VirtualBookStore.adapters.input.request.category;
 
 import com.eCommerce.VirtualBookStore.domain.entities.Category;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.DuplicateValue;
+import com.eCommerce.VirtualBookStore.domain.usecases.category.CategoryRequestData;
 import jakarta.validation.constraints.NotBlank;
 
-public class CategoryRequest implements CategoryData {
+public class CategoryRequest implements CategoryRequestData {
     @NotBlank
     @DuplicateValue(className = Category.class, fieldName = "name")
     private String name;

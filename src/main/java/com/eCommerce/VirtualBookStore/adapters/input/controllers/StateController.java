@@ -1,9 +1,9 @@
 package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.stateMapper.StateRequest;
+import com.eCommerce.VirtualBookStore.adapters.input.request.stateOfTheCountry.StateRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.StateResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.State;
-import com.eCommerce.VirtualBookStore.domain.usecases.StateService;
+import com.eCommerce.VirtualBookStore.domain.usecases.stateOfTheCountry.StateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,7 @@ package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 
 import com.eCommerce.VirtualBookStore.adapters.output.response.BookResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Book;
-import com.eCommerce.VirtualBookStore.domain.usecases.BookService;
+import com.eCommerce.VirtualBookStore.domain.usecases.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

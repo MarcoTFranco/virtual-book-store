@@ -3,17 +3,18 @@ package com.eCommerce.VirtualBookStore.adapters.input.request.book;
 import com.eCommerce.VirtualBookStore.domain.entities.Author;
 import com.eCommerce.VirtualBookStore.domain.entities.Book;
 import com.eCommerce.VirtualBookStore.domain.entities.Category;
-import com.eCommerce.VirtualBookStore.domain.usecases.BookService;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.DuplicateValue;
 import com.eCommerce.VirtualBookStore.domain.usecases.annotations.ExistId;
+import com.eCommerce.VirtualBookStore.domain.usecases.book.BookRequestData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.function.Function;
 
-public class BookRequest {
+public class BookRequest implements BookRequestData {
     @NotBlank
     @DuplicateValue(fieldName = "title", className = Book.class)
     private String title;
@@ -52,11 +53,12 @@ public class BookRequest {
         this.categoryId = categoryId;
         this.authorId = authorId;
     }
+    @Override
+    public Book toModel(Function<Long, Author> authorLoads,
+                        Function<Long, Category> categoryLoads) {
 
-    public Book toModel(BookService service) {
-
-        @NotNull Category category = service.find(Category.class, categoryId);
-        @NotNull Author author = service.find(Author.class, authorId);
+        @NotNull Category category = categoryLoads.apply(categoryId);
+        @NotNull Author author = authorLoads.apply(authorId);
 
         Assert.state(category != null, "Não pode ser nulo a categoria do livro");
         Assert.state(author != null, "Não pode ser nulo o autor do livro");

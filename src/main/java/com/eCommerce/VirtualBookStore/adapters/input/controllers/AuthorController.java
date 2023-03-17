@@ -3,7 +3,7 @@ package com.eCommerce.VirtualBookStore.adapters.input.controllers;
 import com.eCommerce.VirtualBookStore.adapters.input.request.author.AuthorRequest;
 import com.eCommerce.VirtualBookStore.adapters.output.response.AuthorResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Author;
-import com.eCommerce.VirtualBookStore.domain.usecases.AuthorService;
+import com.eCommerce.VirtualBookStore.domain.usecases.author.AuthorService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

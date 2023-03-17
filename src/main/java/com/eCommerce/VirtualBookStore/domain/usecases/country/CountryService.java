@@ -1,4 +1,4 @@
-package com.eCommerce.VirtualBookStore.domain.usecases;
+package com.eCommerce.VirtualBookStore.domain.usecases.country;
 
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.CountryRepository;
 import com.eCommerce.VirtualBookStore.domain.entities.Country;

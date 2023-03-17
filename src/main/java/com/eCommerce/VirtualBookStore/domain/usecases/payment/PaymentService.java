@@ -1,4 +1,4 @@
-package com.eCommerce.VirtualBookStore.domain.usecases;
+package com.eCommerce.VirtualBookStore.domain.usecases.payment;
 
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.PaymentRepository;
 import com.eCommerce.VirtualBookStore.domain.entities.Payment;

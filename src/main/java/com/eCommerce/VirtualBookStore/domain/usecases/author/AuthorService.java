@@ -1,6 +1,5 @@
-package com.eCommerce.VirtualBookStore.domain.usecases;
+package com.eCommerce.VirtualBookStore.domain.usecases.author;
 
-import com.eCommerce.VirtualBookStore.adapters.input.request.author.AuthorData;
 import com.eCommerce.VirtualBookStore.adapters.output.repositories.AuthorRepository;
 import com.eCommerce.VirtualBookStore.adapters.output.response.AuthorResponse;
 import com.eCommerce.VirtualBookStore.domain.entities.Author;
@@ -20,7 +19,7 @@ public class AuthorService {
     }
 
     @Transactional
-    public Author performs(@Valid AuthorData data) {
+    public Author performs(@Valid AuthorRequestData data) {
         Author author = data.toModel();
         authorRepository.save(author);
         return author;
