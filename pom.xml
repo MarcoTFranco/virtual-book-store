@@ -11,6 +11,7 @@
 	<groupId>com.eCommerce</groupId>
 	<artifactId>VirtualBookStore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>VirtualBookStore</name>
 	<description>Criando uma API que suporta uma loja de livros virtual</description>
 	<properties>

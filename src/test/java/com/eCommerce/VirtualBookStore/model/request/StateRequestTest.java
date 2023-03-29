@@ -3,6 +3,7 @@ package com.eCommerce.VirtualBookStore.model.request;
 
 import com.eCommerce.VirtualBookStore.adapters.input.request.StateRequest;
 import com.eCommerce.VirtualBookStore.domain.entities.Country;
+import com.eCommerce.VirtualBookStore.domain.service.findEntities.FindEntites;
 import com.eCommerce.VirtualBookStore.domain.service.stateOfTheCountry.StateService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,23 +18,23 @@ class StateRequestTest {
     @DisplayName("cria o estado se o pais existir no bando de dados")
     void test1() {
 
-        StateService service = Mockito.mock(StateService.class);
+        FindEntites service = Mockito.mock(FindEntites.class);
 
         Mockito.when(service.find(Country.class, 1L)).thenReturn(new Country(""));
 
-        Assertions.assertNotNull(request.toModel(service));
+        Assertions.assertNotNull(request.toModel(countryId -> service.find(Country.class, countryId)));
     }
 
     @Test
     @DisplayName("nao cria o estado se o pais existir no bando de dados")
     void test2() {
 
-        StateService service = Mockito.mock(StateService.class);
+        FindEntites service = Mockito.mock(FindEntites.class);
 
         Mockito.when(service.find(Country.class, 1L)).thenReturn(null);
 
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            request.toModel(service);
+           request.toModel(countryId -> service.find(Country.class, countryId));
         });
     }
 
